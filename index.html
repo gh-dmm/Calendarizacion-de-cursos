@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor Académico - Google Style</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --g-blue: #4285F4; --g-red: #EA4335; --g-yellow: #FBBC05; --g-green: #34A853;
+        }
+        body { background-color: #f8f9fa; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        
+        /* Barra de colores superior estilo Google */
+        .google-bar { height: 6px; display: flex; width: 100%; position: fixed; top: 0; z-index: 1000; }
+        .bar-b { background: var(--g-blue); flex: 1; }
+        .bar-r { background: var(--g-red); flex: 1; }
+        .bar-y { background: var(--g-yellow); flex: 1; }
+        .bar-g { background: var(--g-green); flex: 1; }
+        
+        .main-container { margin-top: 60px; padding: 20px; }
+        .card { border: none; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+        .btn-google-blue { background-color: var(--g-blue); color: white; border: none; }
+        .btn-google-blue:hover { background-color: #357ae8; color: white; }
+        .btn-google-green { background-color: var(--g-green); color: white; border: none; }
+        .btn-google-green:hover { background-color: #2d9147; color: white; }
+        
+        .text-google-blue { color: var(--g-blue); }
+        .text-google-red { color: var(--g-red); }
+        .text-google-yellow { color: var(--g-yellow); }
+        .text-google-green { color: var(--g-green); }
+    </style>
+</head>
+<body>
+    <div class="google-bar">
+        <div class="bar-b"></div><div class="bar-r"></div><div class="bar-y"></div><div class="bar-g"></div>
+    </div>
+
+    <div class="container main-container">
+        <header class="text-center mb-5">
+            <h1 class="display-4 fw-bold">
+                <span class="text-google-blue">G</span><span class="text-google-red">e</span><span class="text-google-yellow">s</span><span class="text-google-blue">t</span><span class="text-google-green">o</span><span class="text-google-red">r</span> Académico
+            </h1>
+            <p class="text-muted small">Algoritmo de asignación de espacios educativos</p>
+        </header>
+
+        <div class="row g-4">
+            <div class="col-md-5">
+                <div class="card p-4 h-100">
+                    <h4 class="mb-3 text-google-blue">Configuración de Aulas</h4>
+                    <div class="input-group mb-3">
+                        <input type="number" id="aulaCapacidad" class="form-control" placeholder="Capacidad de alumnos">
+                        <button class="btn btn-google-blue" onclick="agregarAula()">+ Añadir</button>
+                    </div>
+                    <ul id="listaAulas" class="list-group list-group-flush shadow-sm rounded"></ul>
+                </div>
+            </div>
+
+            <div class="col-md-7">
+                <div class="card p-4 h-100">
+                    <h4 class="mb-3 text-google-green">Asignar Nuevo Curso</h4>
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <label class="form-label">Alumnos</label>
+                            <input type="number" id="cAlumnos" class="form-control" placeholder="Ej. 25">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Hora Inicio</label>
+                            <input type="number" id="cInicio" class="form-control" placeholder="0-23">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Hora Fin</label>
+                            <input type="number" id="cFin" class="form-control" placeholder="0-23">
+                        </div>
+                        <div class="col-12 mt-4">
+                            <button class="btn btn-google-green w-100 fw-bold" onclick="asignarCurso()">PROCESAR ASIGNACIÓN</button>
+                        </div>
+                    </div>
+                    <div id="mensajeConsola" class="mt-4"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-5">
+            <button class="btn btn-outline-dark btn-lg shadow-sm" onclick="window.open('horarios.html', '_blank')">
+                📊 Ver Horarios y Grupos
+            </button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
