@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Reporte General - Grupos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background: #f1f3f4; }
+        .container { background: white; margin-top: 30px; padding: 40px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .table thead { background: #4285F4; color: white; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="m-0">📋 Control de Grupos y Horarios</h2>
+            <button class="btn btn-outline-secondary" onclick="window.close()">Cerrar</button>
+        </div>
+        
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead>
+                    <tr>
+                        <th>ID Curso</th>
+                        <th>Aula Asignada</th>
+                        <th>Cant. Alumnos</th>
+                        <th>Rango de Horario</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaData">
+                    </tbody>
+            </table>
+        </div>
+        <div id="vacio" class="text-center text-muted py-4 d-none">No hay cursos registrados en el sistema.</div>
+    </div>
+
+    <script>
+        const cursos = JSON.parse(localStorage.getItem('cursos')) || [];
+        const tabla = document.getElementById('tablaData');
+        
+        if (cursos.length === 0) {
+            document.getElementById('vacio').classList.remove('d-none');
+        } else {
+            tabla.innerHTML = cursos.map(c => `
+                <tr>
+                    <td><strong>Curso #${c.id}</strong></td>
+                    <td><span class="badge bg-primary px-3">Aula ${c.aulaId}</span></td>
+                    <td>${c.alumnos} personas</td>
+                    <td><code class="text-dark">${c.inicio}:00 - ${c.fin}:00 hrs</code></td>
+                </tr>
+            `).join('');
+        }
+    </script>
+</body>
+</html>
+
